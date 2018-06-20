@@ -1,0 +1,409 @@
+Anki
+----
+
+Fields:
+
+Sort field
+Subject
+Level
+Item type
+Primary meaning
+Additional meanings
+Part of speech
+Primary reading
+Additional readings
+Onyomi reading
+Kunyomi reading
+Nanori reading
+Meaning mnemonic
+Reading mnemonic
+Context sentences
+Audio
+WaniKani link
+
+
+Templates
+---------
+
+Meaning and reading:
+Front:
+```
+<div class="section section-subject" lang="ja">
+  <span class="primary-big">{{Subject}}</span>
+</div>
+
+<div class="section details-front-section">
+{{Item type}}
+</div>
+```
+
+Back:
+```
+<div class="section section-subject" lang="ja">
+  <span class="primary-big">{{Subject}}</span>
+</div>
+
+<div id="_answer" class="section reading-section" lang="ja">
+  {{#Primary reading}}<span class=primary>{{Primary reading}}</span><br>{{/Primary reading}}
+  {{#Additional readings}}<span class=additional>{{Additional readings}}</span><br>{{/Additional readings}}
+</div>
+
+<div class="section meaning-section">
+  <span class=primary>{{Primary meaning}}</span><br>
+  {{#Additional meanings}}
+  <span class=additional>{{Additional meanings}}</span><br>
+  {{/Additional meanings}}
+</div>
+
+<div class="kanji-readings-visible" data-visible="{{Item type}}">
+<div class="section kanji-readings-section" lang="ja">
+  <span class="readings-shown data-type="{{Item type}}"><span>
+  <table>
+  <tr class="header">{{#Onyomi reading}}<td>音</td>{{/Onyomi reading}}{{#Kunyomi reading}}<td>訓</td>{{/Kunyomi reading}}{{#Nanori reading}}<td>名乗り</td>{{/Nanori reading}}</tr>
+  <tr class="content">{{#Onyomi reading}}<td>{{Onyomi reading}}</td>{{/Onyomi reading}}{{#Kunyomi reading}}<td>{{Kunyomi reading}}</td>{{/Kunyomi reading}}{{#Nanori reading}}<td>{{Nanori reading}}</td>{{/Nanori reading}}</tr>
+  </table>
+</div>
+</div>
+
+{{Audio}}
+
+<hr class=section-divider>
+
+<div class="section mnemonic-section">
+  <h4>Meaning</h4>
+  {{Meaning mnemonic}}<br>
+  {{#Reading mnemonic}}
+  <h4>Reading</h4>
+  {{Reading mnemonic}}<br>
+  {{/Reading mnemonic}}
+</div>
+
+<div class="section details-section">
+{{#Part of speech}}
+<h4>Part of speech</h4>
+{{Part of speech}}<br>
+{{/Part of speech}}
+</div>
+
+{{#Context sentences}}
+<div class="section sentences-section">
+<h4>Sentences</h4>
+{{Context sentences}}
+</div>
+{{/Context sentences}}
+
+<div class="section link-section">
+{{#WaniKani link}}
+<a href="{{WaniKani link}}">Read at WaniKani</a>
+{{/WaniKani link}}
+</div>
+```
+
+CSS:
+```
+.card {
+ font-family: sans-serif;
+ font-size: 16px;
+ padding: 3em 0em 1em 0em;
+ line-height: 1.2;
+ color: #222;
+ background-color: #fafafa;
+ text-align: center;
+}
+
+hr {
+ border: 0;
+ height: 1px;
+ background: #888;
+}
+
+h4 {
+ margin-bottom: 0.3em;
+}
+
+span.kanji-highlight {
+ background-color: #f100a1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.reading-highlight {
+ background-color: #474747;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.radical-highlight {
+ background-color: #00a1f1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.vocabulary-highlight {
+ background-color: #a100f1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.reading-muted {
+  color: #888;
+}
+
+.primary-big {
+ font-size: 4em;
+ text-shadow: 1px 1px rgba(100,100,100,0.2);
+ line-height: 0.8;
+}
+
+.primary {
+ font-size: 2em;
+}
+
+.additional {
+ font-size: 1.5em;
+ color: #555;
+}
+
+.section {
+ margin: 1.7em 1em;
+}
+
+.section-divider {
+ margin: 2em 3em;
+ border: 0;
+ height: 2px;
+ background: #888;
+}
+
+.kanji-readings-visible {
+ display: none;
+}
+
+.kanji-readings-visible[data-visible=Kanji] {
+ display: block;
+}
+
+.kanji-readings-section table {
+ margin: 0 auto;
+ border-spacing: 1.8em 0.9em;
+ line-height: 1;
+}
+
+.kanji-readings-section table:empty, .reading-section table tr:empty {
+ display: none;
+}
+
+.kanji-readings-section table .header {
+ color: #888;
+ font-size: 1.3em;
+ line-height: 0.5;
+}
+
+.kanji-readings-section table .content {
+ font-size: 1.8em;
+}
+
+.details-section, .mnemonic-section, .sentences-section, .link-section {
+ text-align: left;
+}
+
+.details-front-section {
+ font-size: 1.5em;
+ color: #888;
+}
+```
+
+Meaning and reading reversed:
+Front:
+```
+<div class="section meaning-section">
+  <span class=primary>{{Primary meaning}}</span><br>
+  {{#Additional meanings}}
+  <span class=additional>{{Additional meanings}}</span><br>
+  {{/Additional meanings}}
+</div>
+
+<div class="section details-front-section">
+{{Item type}}
+{{#Part of speech}}
+<br><br>
+{{Part of speech}}<br>
+{{/Part of speech}}
+</div>
+```
+
+Back:
+```
+<div class="section meaning-section">
+  <span class=primary>{{Primary meaning}}</span><br>
+  {{#Additional meanings}}
+  <span class=additional>{{Additional meanings}}</span><br>
+  {{/Additional meanings}}
+</div>
+
+<div class="section section-subject" lang="ja">
+  <span class="primary-big">{{Subject}}</span>
+</div>
+
+<div id="_answer" class="section reading-section" lang="ja">
+  {{#Primary reading}}<span class=primary>{{Primary reading}}</span><br>{{/Primary reading}}
+  {{#Additional readings}}<span class=additional>{{Additional readings}}</span><br>{{/Additional readings}}
+</div>
+
+<div class="kanji-readings-visible" data-visible="{{Item type}}">
+<div class="section kanji-readings-section" lang="ja">
+  <span class="readings-shown data-type="{{Item type}}"><span>
+  <table>
+  <tr class="header">{{#Onyomi reading}}<td>音</td>{{/Onyomi reading}}{{#Kunyomi reading}}<td>訓</td>{{/Kunyomi reading}}{{#Nanori reading}}<td>名乗り</td>{{/Nanori reading}}</tr>
+  <tr class="content">{{#Onyomi reading}}<td>{{Onyomi reading}}</td>{{/Onyomi reading}}{{#Kunyomi reading}}<td>{{Kunyomi reading}}</td>{{/Kunyomi reading}}{{#Nanori reading}}<td>{{Nanori reading}}</td>{{/Nanori reading}}</tr>
+  </table>
+</div>
+</div>
+
+{{Audio}}
+
+<hr class=section-divider>
+
+<div class="section mnemonic-section">
+  <h4>Meaning</h4>
+  {{Meaning mnemonic}}<br>
+  {{#Reading mnemonic}}
+  <h4>Reading</h4>
+  {{Reading mnemonic}}<br>
+  {{/Reading mnemonic}}
+</div>
+
+<div class="section details-section">
+{{#Part of speech}}
+<h4>Part of speech</h4>
+{{Part of speech}}<br>
+{{/Part of speech}}
+</div>
+
+{{#Context sentences}}
+<div class="section sentences-section">
+<h4>Sentences</h4>
+{{Context sentences}}
+</div>
+{{/Context sentences}}
+
+<div class="section link-section">
+{{#WaniKani link}}
+<a href="{{WaniKani link}}">Read at WaniKani</a>
+{{/WaniKani link}}
+</div>
+```
+
+CSS:
+```
+.card {
+ font-family: sans-serif;
+ font-size: 16px;
+ padding: 3em 0em 1em 0em;
+ line-height: 1.2;
+ color: #222;
+ background-color: #fafafa;
+ text-align: center;
+}
+
+hr {
+ border: 0;
+ height: 1px;
+ background: #888;
+}
+
+h4 {
+ margin-bottom: 0.3em;
+}
+
+span.kanji-highlight {
+ background-color: #f100a1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.reading-highlight {
+ background-color: #474747;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.radical-highlight {
+ background-color: #00a1f1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.vocabulary-highlight {
+ background-color: #a100f1;
+ padding: 1px 4px;
+ color: #fff;
+}
+
+span.reading-muted {
+  color: #888;
+}
+
+.primary-big {
+ font-size: 4em;
+ text-shadow: 1px 1px rgba(100,100,100,0.2);
+ line-height: 0.8;
+}
+
+.primary {
+ font-size: 2em;
+}
+
+.additional {
+ font-size: 1.5em;
+ color: #555;
+}
+
+.section {
+ margin: 1.7em 1em;
+}
+
+.section-divider {
+ margin: 2em 3em;
+ border: 0;
+ height: 2px;
+ background: #888;
+}
+
+.kanji-readings-visible {
+ display: none;
+}
+
+.kanji-readings-visible[data-visible=Kanji] {
+ display: block;
+}
+
+.kanji-readings-section table {
+ margin: 0 auto;
+ border-spacing: 1.8em 0.9em;
+ line-height: 1;
+}
+
+.kanji-readings-section table:empty, .reading-section table tr:empty {
+ display: none;
+}
+
+.kanji-readings-section table .header {
+ color: #888;
+ font-size: 1.3em;
+ line-height: 0.5;
+}
+
+.kanji-readings-section table .content {
+ font-size: 1.8em;
+}
+
+.details-section, .mnemonic-section, .sentences-section, .link-section {
+ text-align: left;
+}
+
+.details-front-section {
+ font-size: 1.5em;
+ color: #888;
+}
+```

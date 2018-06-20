@@ -1,0 +1,19 @@
+Exports WaniKani content to Anki.
+
+Crawls the WaniKani content and exports it to a CSV and audio, that can be imported in an Anki deck.
+
+Note: your progress will not be carried over to the Anki deck.
+
+Setup:
+Use at least Python 3.6
+pip install beautifulsoup4 requests
+copy config.ini.sample to config.ini and fill it in
+run main.py
+
+It downloads all pages and audio, and then extracts the data from it. This takes about 3 hours.
+The result is a csv file and mp3 files. These can be imported in Anki. See the ANKI file for the fields and HTML templates.
+
+
+Technical note:
+It downloads all html pages to later extract the data from them because the API is not sufficient and misses some important data.
+The extraction of data from the html is very error-prone and might break. If WK changes some of their rendering it might break, please provide a PR if that happens.
