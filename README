@@ -17,3 +17,7 @@ The result is a csv file and mp3 files. These can be imported in Anki. See the A
 Technical note:
 It downloads all html pages to later extract the data from them because the API is not sufficient and misses some important data.
 The extraction of data from the html is very error-prone and might break. If WK changes some of their rendering it might break, please provide a PR if that happens.
+
+
+Why not use https://wanikanitoanki.com?
+This service does not include nearly enough data for a complete deck. Which is completely reasonable, because to do that you need to crawl all pages. This project for example includes context sentences, reading and meaning mnemonics, etc. Basically all information that's on the page of a radical/kanji/vocab.
